@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  // url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  // directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Admin {
+  username String    @id @db.VarChar(20)
+  name     String    @db.VarChar(50)
+  password String    @db.VarChar(255)
+  articles Article[]
+
+  @@map("admin")
+}
+
+model Article {
+  article_id     String   @id @db.VarChar(10)
+  admin_username String   @db.VarChar(20)
+  admin          Admin    @relation(fields: [admin_username], references: [username])
+  title          String   @db.VarChar(150)
+  text           String   @db.Text()
+  image          String   @db.VarChar(255)
+  is_published   Boolean  @default(false)
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+}
