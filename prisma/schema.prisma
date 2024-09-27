@@ -25,13 +25,13 @@ model Admin {
 }
 
 model Article {
-  article_id     String   @id @db.VarChar(10)
-  admin_username String   @db.VarChar(20)
-  admin          Admin    @relation(fields: [admin_username], references: [username])
-  title          String   @db.VarChar(150)
-  text           String   @db.Text()
-  image          String   @db.VarChar(255)
-  is_published   Boolean  @default(false)
-  created_at     DateTime @default(now())
-  updated_at     DateTime @updatedAt
+  article_id      String   @id @db.VarChar(10)
+  author_username String   @db.VarChar(20)
+  author          Admin    @relation(fields: [author_username], references: [username])
+  title           String   @db.VarChar(150)
+  text            String   @db.Text()
+  image           String   @db.VarChar(255)
+  is_published    Boolean  @default(false)
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
 }

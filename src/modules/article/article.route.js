@@ -13,6 +13,6 @@ router.delete("/:id", middleware, articleController.deleteArticleById);
 router.get("/", middleware, articleController.getAllArticle);
 router.get("/published", articleController.getAllPublishedArticle);
 router.get("/:id", middleware, articleController.getArticleById);
-router.get("/published/:id", middleware, articleController.getPublishedArticleById);
+router.get("/published/:id", articleController.getPublishedArticleById);
 
 module.exports = router;

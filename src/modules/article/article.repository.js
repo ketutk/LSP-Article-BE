@@ -11,7 +11,7 @@ class ArticleRepository {
         title,
         text,
         image,
-        admin_username: user.username,
+        author_username: user.username,
       },
     });
   }
@@ -36,7 +36,7 @@ class ArticleRepository {
         article_id: id,
       },
       include: {
-        admin: {
+        author: {
           select: {
             name: true,
           },
@@ -51,7 +51,7 @@ class ArticleRepository {
         is_published: true,
       },
       include: {
-        admin: {
+        author: {
           select: {
             name: true,
           },
@@ -87,7 +87,7 @@ class ArticleRepository {
         text: true,
         title: true,
         created_at: true,
-        admin: {
+        author: {
           select: {
             name: true,
           },
@@ -110,7 +110,7 @@ class ArticleRepository {
         text: true,
         title: true,
         created_at: true,
-        admin: {
+        author: {
           select: {
             name: true,
           },
@@ -121,8 +121,6 @@ class ArticleRepository {
       },
     });
   }
-
-  async;
 }
 
 module.exports = ArticleRepository;

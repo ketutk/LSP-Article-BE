@@ -19,6 +19,13 @@ class AuthController {
       next(error);
     }
   }
+  async whoami(req, res, next) {
+    try {
+      return response(res, 200, req.user_data, "Anda Berhasil Login!");
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = AuthController;
